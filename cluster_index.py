@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 """Some external cluster index."""
 from __future__ import division
-import sys
 import math
 
 
@@ -127,20 +126,4 @@ def Hubert(labels, res):
     return (Nt*yy-((yy+yn)*(yy+ny)))/math.sqrt((yy+yn)*(yy+ny)*(nn+yn)*(nn+ny))
 
 
-with open(sys.argv[1], "r") as labels_file:
-    labels = labels_file.read()
-labels = labels.splitlines()
 
-with open(sys.argv[2], "r") as res_file:
-    res = res_file.read()
-res = res.splitlines()
-
-a, b, c, d = compute_pairs_count(labels, res)
-print("a:"+str(a))
-print("b:"+str(b))
-print("c:"+str(c))
-print("d:"+str(d))
-print("ARI:"+str(ARI(labels, res)))
-print("RI:"+str(RI(labels, res)))
-print("F_measure:"+str(F_measure(labels, res)))
-print("Jaccard:"+str(Jaccard(labels, res)))
