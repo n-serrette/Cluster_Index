@@ -126,4 +126,3 @@ def Hubert(labels, res):
     return (Nt*yy-((yy+yn)*(yy+ny)))/math.sqrt((yy+yn)*(yy+ny)*(nn+yn)*(nn+ny))
 
 
-
