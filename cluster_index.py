@@ -1,6 +1,7 @@
 #! /usr/bin/env python
-"""Some external cluster index."""
+"""Some cluster index."""
 from __future__ import division
+#  import sys
 import math
 
 
@@ -28,6 +29,24 @@ def compute_pairs_count(labels, res):
             if labels[i] != labels[j] and res[i] == res[j]:
                 ny += 1
     return (yy, nn, yn, ny)
+
+
+def compute_confusion_matrix(labels, res):
+    """Compute confusion matrix M with m_i,j=|C_i inter C'_j|."""
+    k = set(labels)
+    l = set(res)
+    n = len(labels)
+    if n != len(res):  # TODO: change exeption
+        raise ValueError("The two partitions have different size.")
+    M = []
+    for i in k:
+        m_i = []
+        C_i = set([index for index, value in enumerate(labels) if value == i])
+        for j in l:
+            C_j = set([index for index, value in enumerate(res) if value == j])
+            m_i.append(len(C_i.intersection(C_j)))
+        M.append(m_i)
+    return M
 
 
 def ARI(labels, res):
@@ -126,3 +145,68 @@ def Hubert(labels, res):
     return (Nt*yy-((yy+yn)*(yy+ny)))/math.sqrt((yy+yn)*(yy+ny)*(nn+yn)*(nn+ny))
 
 
+def Van_Dongen_Measure(labels, res):
+    """Compute Van Dongen Measure."""
+    m = compute_confusion_matrix(labels, res)
+    n = len(labels)
+    k = len(set(labels))
+    l = len(set(res))
+    sum_k = 0
+    sum_l = 0
+    for i in m:
+        sum_k += max(i)
+    for j in range(l):
+        max_i = 0
+        for i in range(k):
+            if m[i][j] > max_i:
+                max_i = m[i][j]
+        sum_l += max_i
+    print(2*n-sum_k-sum_l)
+
+
+def Entropy(labels):
+    """Compute the entropy."""
+    n = len(labels)
+    sum = 0
+    for i in set(labels):
+        C_i = [x for x in labels if x == i]
+        p_i = len(C_i)/n
+        sum += p_i*math.log(p_i, 2)
+    return -1*sum
+
+
+def MI(labels, res):
+    """Compute mutual information."""
+    k = set(labels)
+    l = set(labels)
+    n = len(labels)
+    if n != len(res):  # TODO: change exeption
+        raise ValueError("The two partitions have different size.")
+    sum_k = 0
+    for i in k:
+        C_i = set([index for index, value in enumerate(labels) if value == i])
+        p_i = len(C_i)/n
+        sum_l = 0
+        for j in l:
+            C_j = set([index for index, value in enumerate(res) if value == j])
+            p_j = len(C_j)/n
+            p_ij = len(C_i.intersection(C_j))/n
+            if p_ij != 0:
+                sum_l += p_ij * math.log((p_ij/(p_i*p_j)), 2)
+        sum_k += sum_l
+    return sum_k
+
+
+def SG_NMI(labels, res):
+    """Strehl and Glosh Normalized Mutual Information."""
+    return MI(labels, res) / math.sqrt(Entropy(labels) * Entropy(res))
+
+
+def FJ_NMI(labels, res):
+    """Fred and Jain Normalized Mutual Information."""
+    return 2 * MI(labels, res) / (Entropy(labels) + Entropy(res))
+
+
+def Variation_Information(labels, res):
+    """Meila Variation of Information."""
+    return Entropy(labels) + Entropy(res) - 2 * MI(labels, res)
