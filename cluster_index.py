@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 """Some cluster index."""
 from __future__ import division
-#  import sys
 import math
 
 
@@ -49,13 +48,24 @@ def compute_confusion_matrix(labels, res):
     return M
 
 
+def Cluster_Entropy(labels):
+    """Compute the entropy of a clustering."""
+    n = len(labels)
+    sum = 0
+    for i in set(labels):
+        C_i = [x for x in labels if x == i]
+        p_i = len(C_i)/n
+        sum += p_i*math.log(p_i, 2)
+    return -1*sum
+
+
 def ARI(labels, res):
     """Compute Hubert and Arabi's Adjusted Rand Index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return 2*(yy*nn-yn*ny)/((yy+ny)*(ny+nn)+(yy + yn)*(yn + nn))
 
 
-def RI(labels, res):  # noqa: E501
+def RI(labels, res):
     """Compute Rand Index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return (yy+nn)/(yy+nn+yn+ny)
@@ -133,9 +143,15 @@ def Russel_Rao(labels, res):
 
 
 def Solkal_Sneath(labels, res):
-    """Solkal_Sneath index."""
+    """Solkal_Sneath index, first version."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return yy/(yy+2*(yn+ny))
+
+
+def Solkal_Sneath_2(labels, res):
+    """Solkal_Sneath index, second version."""
+    yy, nn, yn, ny = compute_pairs_count(labels, res)
+    return (yy + nn)/(yy + nn + (yn + ny)/2)
 
 
 def Hubert(labels, res):
@@ -143,6 +159,12 @@ def Hubert(labels, res):
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     Nt = yy + nn + yn + ny
     return (Nt*yy-((yy+yn)*(yy+ny)))/math.sqrt((yy+yn)*(yy+ny)*(nn+yn)*(nn+ny))
+
+
+def Mirkin(labels, res):
+    """Mirkin metric or Equivalence Mismatch Distance."""
+    yy, nn, yn, ny = compute_pairs_count(labels, res)
+    return 2 * (ny + yn)
 
 
 def Van_Dongen_Measure(labels, res):
@@ -164,15 +186,30 @@ def Van_Dongen_Measure(labels, res):
     print(2*n-sum_k-sum_l)
 
 
-def Entropy(labels):
-    """Compute the entropy."""
+def Purity(labels, res):
+    """Purity of a clustering."""
+    confusion_matrix = compute_confusion_matrix(labels, res)
     n = len(labels)
     sum = 0
-    for i in set(labels):
-        C_i = [x for x in labels if x == i]
-        p_i = len(C_i)/n
-        sum += p_i*math.log(p_i, 2)
-    return -1*sum
+    for c in confusion_matrix:
+        sum += max(c)
+    return sum / n
+
+
+def Entropy(labels, res):
+    """Entropy of two clustering."""
+    confusion_matrix = compute_confusion_matrix(labels, res)
+    n = len(labels)
+    sum_E = 0
+    for c in confusion_matrix:
+        n_j = sum(c)
+        sum_j = 0
+        for j in c:
+            p_ij = j / sum(c)
+            if p_ij != 0:
+                sum_j += p_ij * math.log(p_ij, 2)
+        sum_E -= n_j/n * sum_j
+    return sum_E
 
 
 def MI(labels, res):
@@ -199,14 +236,16 @@ def MI(labels, res):
 
 def SG_NMI(labels, res):
     """Strehl and Glosh Normalized Mutual Information."""
-    return MI(labels, res) / math.sqrt(Entropy(labels) * Entropy(res))
+    mi = MI(labels, res)
+    return mi / math.sqrt(Cluster_Entropy(labels) * Cluster_Entropy(res))
 
 
 def FJ_NMI(labels, res):
     """Fred and Jain Normalized Mutual Information."""
-    return 2 * MI(labels, res) / (Entropy(labels) + Entropy(res))
+    mi = MI(labels, res)
+    return 2 * mi / (Cluster_Entropy(labels) + Cluster_Entropy(res))
 
 
 def Variation_Information(labels, res):
     """Meila Variation of Information."""
-    return Entropy(labels) + Entropy(res) - 2 * MI(labels, res)
+    return Cluster_Entropy(labels) + Cluster_Entropy(res) - 2 * MI(labels, res)
