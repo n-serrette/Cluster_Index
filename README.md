@@ -19,7 +19,7 @@ All this indices are based on counting pair depending on wether they belong to t
 #### F-measure
 Also call Czebanowski-Dice index or Ochiai index
 
-#### Rand Index [[2]](##references)
+#### Rand Index [[2]](##References)
 
 #### Adjusted Rand Index
 
