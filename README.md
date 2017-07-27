@@ -16,14 +16,11 @@ All this indices are based on counting pair depending on wether they belong to t
 
 #### Recall
 
-#### F-measure
-Also call Czebanowski-Dice index or Ochiai index
-
-#### Rand Index [[2]](#references)
+#### Rand Index [[3]](#references)
 
 #### Adjusted Rand Index
 
-#### Folkes-Mallows Index
+#### Folkes-Mallows Index [[4]](#references)
 
 #### Jaccard Index
 
@@ -43,9 +40,17 @@ Also call Czebanowski-Dice index or Ochiai index
 
 #### Mirkin Metric
 
-#### Purity
 
-#### Entropy
+
+
+### Measures based on set overlaps
+
+#### F-measure
+Also call Czebanowski-Dice index or Ochiai index
+
+
+
+### Measures based on Mutual Information
 
 #### Mutual Information
 
@@ -55,7 +60,25 @@ Also call Czebanowski-Dice index or Ochiai index
 
 #### Variation of Infomation
 
+### Other
+
+#### Purity
+
+#### Entropy
+
+
+
 ## References
 
 1. Silke Wagner and Dorothea Wagner, Comparing Clustering - An Overview, 2007
-2.  Rand, William M.: Objective Criteria for the Evaluation of Clustering Methods. Journal of the American Statistical Association, 66(336):846-850, 1971.
+3. Bernard Desgraupes, Clustering Indices, 2016, [https://CRAN.R-project.org/package=clusterCrit]
+4. Rand, William M.: Objective Criteria for the Evaluation of Clustering Methods. Journal of the American Statistical Association, 66(336):846-850, 1971.
+5. Fowlkes, E. B., Mallows, C. L.: A Method for Comparing Two Hierarchical Clusterings. Journal of the American Statistical Association, 78(383):553–569, 1983.
+
+
+## TODO
+
+* add internal cluster indexes
+* complete References section
+* add definition and formula for each indexes
+
