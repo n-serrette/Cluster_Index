@@ -242,7 +242,7 @@ def MI(labels, res):
     k = set(labels)
     l = set(labels)
     n = len(labels)
-    if n != len(res):  # TODO: change exeption
+    if n != len(res):
         raise ValueError("The two partitions have different size.")
     sum_k = 0
     for i in k:

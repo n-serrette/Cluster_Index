@@ -13,27 +13,27 @@ All this indices are based on counting pair depending on wether they belong to t
   * nn : the two points does not belong to the same cluster according to C and C'
 
 #### Precision
-
+![precision](images/precision.png)
 #### Recall
-
+![recall](images/recall.png)
 #### Rand Index [[3]](#references)
-
+![ri](images/RI.png)
 #### Adjusted Rand Index
-
+![ari](images/ARI.png)
 #### Folkes-Mallows Index [[4]](#references)
-
+![folkesMallows](images/FolkesMallows.png)
 #### Jaccard Index
-
+![jaccard](images/jaccard.png)
 #### Kulczynski Index
-
+![kulczynski](images/Kulczynski.png)
 #### McNemar Index
-
+![McNemar](images/McNemar.png)
 #### Phi Index
-
+![phi](images/phi.png)
 #### Rogers and Tanimoto Index
-
+![rogerstanimoto](images/RT.png)
 #### Russel and Rao Index
-
+![russelRao](images/RR.png)
 #### Solkal and Sneath Index (version 1 and 2)
 
 #### Hubert Index
@@ -48,6 +48,7 @@ All this indices are based on counting pair depending on wether they belong to t
 #### F-measure
 Also call Czebanowski-Dice index or Ochiai index
 
+![fmeasure](images/Fmeasure.png)
 
 
 ### Measures based on Mutual Information
@@ -81,4 +82,3 @@ Also call Czebanowski-Dice index or Ochiai index
 * add internal cluster indexes
 * complete References section
 * add definition and formula for each indexes
-
