@@ -4,29 +4,29 @@
 from __future__ import division
 import math
 
-__all__ = [
-    'ARI',
-    'RI',
-    'Precision',
-    'Recall',
-    'F_measure',
-    'Folkes_Mallows',
-    'Jaccard',
-    'Kulczynski',
-    'McNemar',
-    'Phi',
-    'Rogers_Tanimoto',
-    'Russel_Rao',
-    'Solkal_Sneath',
-    'Solkal_Sneath_2',
-    'Hubert',
-    'Mirkin',
-    'Purity',
-    'Entropy',
-    'MI',
-    'SG_NMI',
-    'FJ_NMI',
-    'Variation_Information']
+__all__ = (
+    'ari',
+    'ri',
+    'precision',
+    'recall',
+    'f_measure',
+    'folkes_mallows',
+    'jaccard',
+    'kulczynski',
+    'mc_nemar',
+    'phi',
+    'rogers_tanimoto',
+    'russel_rao',
+    'solkal_sneath',
+    'solkal_sneath_2',
+    'hubert',
+    'mirkin',
+    'purity',
+    'entropy',
+    'mi',
+    'sg_nmi',
+    'fj_nmi',
+    'variation_information')
 
 
 def compute_pairs_count(labels, res):
@@ -58,22 +58,22 @@ def compute_pairs_count(labels, res):
 def compute_confusion_matrix(labels, res):
     """Compute confusion matrix M with m_i,j=|C_i inter C'_j|."""
     k = set(labels)
-    l = set(res)
+    h = set(res)
     n = len(labels)
-    if n != len(res):  # TODO: change exeption
+    if n != len(res):
         raise ValueError("The two partitions have different size.")
     M = []
     for i in k:
         m_i = []
         C_i = set([index for index, value in enumerate(labels) if value == i])
-        for j in l:
+        for j in h:
             C_j = set([index for index, value in enumerate(res) if value == j])
             m_i.append(len(C_i.intersection(C_j)))
         M.append(m_i)
     return M
 
 
-def Cluster_Entropy(labels):
+def cluster_entropy(labels):
     """Compute the entropy of a clustering."""
     n = len(labels)
     sum = 0
@@ -84,25 +84,25 @@ def Cluster_Entropy(labels):
     return -1*sum
 
 
-def ARI(labels, res):
+def ari(labels, res):
     """Compute Hubert and Arabi's Adjusted Rand Index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return 2*(yy*nn-yn*ny)/((yy+ny)*(ny+nn)+(yy + yn)*(yn + nn))
 
 
-def RI(labels, res):
+def ri(labels, res):
     """Compute Rand Index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return (yy+nn)/(yy+nn+yn+ny)
 
 
-def Precision(labels, res):
+def precision(labels, res):
     """Precision coefficient, portion of points rightly grouped together."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return yy/(yy+ny)
 
 
-def Recall(labels, res):
+def recall(labels, res):
     """Recall coefficient.
 
     this is  the proportion of points which are supposed to be grouped together
@@ -113,13 +113,13 @@ def Recall(labels, res):
     return yy/(yy+yn)
 
 
-def F_measure(labels, res):
+def f_measure(labels, res):
     """F measeure or Czekanowski-Dice index aka Ochiai index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return (2*yy)/(2*yy+yn+ny)
 
 
-def Folkes_Mallows(labels, res):  # noqa:D401
+def folkes_mallows(labels, res):  # noqa:D401
     """Folkes-Mallows index.
 
     The geometric mean of the Recall and the Precision.
@@ -128,13 +128,13 @@ def Folkes_Mallows(labels, res):  # noqa:D401
     return yy/math.sqrt((yy+yn)*(yy+ny))
 
 
-def Jaccard(labels, res):
+def jaccard(labels, res):
     """Jaccard index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return yy/(yy+yn+ny)
 
 
-def Kulczynski(labels, res):
+def kulczynski(labels, res):
     """Kulczynski index.
 
     This is the arithmetic mean of the precision and recall coefficients.
@@ -143,66 +143,66 @@ def Kulczynski(labels, res):
     return 1/2*(yy/(yy+ny)+yy/(yy+yn))
 
 
-def McNemar(labels, res):
+def mc_nemar(labels, res):
     """Mc Nemar index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return (nn-ny)/math.sqrt(nn+ny)
 
 
-def Phi(labels, res):
+def phi(labels, res):
     """Phi index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return (yy*nn-yn*ny)/((yy+yn)*(yy+ny)*(yn+nn)*(ny+nn))
 
 
-def Rogers_Tanimoto(labels, res):
+def rogers_tanimoto(labels, res):
     """Rogers-Tanimoto index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return (yy+nn)/(yy+nn+2*(yn + ny))
 
 
-def Russel_Rao(labels, res):
+def russel_rao(labels, res):
     """Russel-Rao index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return yy/(yy+nn+yn+ny)
 
 
-def Solkal_Sneath(labels, res):
+def solkal_sneath(labels, res):
     """Solkal_Sneath index, first version."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return yy/(yy+2*(yn+ny))
 
 
-def Solkal_Sneath_2(labels, res):
+def solkal_sneath_2(labels, res):
     """Solkal_Sneath index, second version."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return (yy + nn)/(yy + nn + (yn + ny)/2)
 
 
-def Hubert(labels, res):
+def hubert(labels, res):
     """Hubert index."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     Nt = yy + nn + yn + ny
     return (Nt*yy-((yy+yn)*(yy+ny)))/math.sqrt((yy+yn)*(yy+ny)*(nn+yn)*(nn+ny))
 
 
-def Mirkin(labels, res):
+def mirkin(labels, res):
     """Mirkin metric or Equivalence Mismatch Distance."""
     yy, nn, yn, ny = compute_pairs_count(labels, res)
     return 2 * (ny + yn)
 
 
-def Van_Dongen_Measure(labels, res):
+def van_dongen_measure(labels, res):
     """Compute Van Dongen Measure."""
     m = compute_confusion_matrix(labels, res)
     n = len(labels)
     k = len(set(labels))
-    l = len(set(res))
+    h = len(set(res))
     sum_k = 0
     sum_l = 0
     for i in m:
         sum_k += max(i)
-    for j in range(l):
+    for j in range(h):
         max_i = 0
         for i in range(k):
             if m[i][j] > max_i:
@@ -211,7 +211,7 @@ def Van_Dongen_Measure(labels, res):
     print(2*n-sum_k-sum_l)
 
 
-def Purity(labels, res):
+def purity(labels, res):
     """Purity of a clustering."""
     confusion_matrix = compute_confusion_matrix(labels, res)
     n = len(labels)
@@ -221,7 +221,7 @@ def Purity(labels, res):
     return sum / n
 
 
-def Entropy(labels, res):
+def entropy(labels, res):
     """Entropy of two clustering."""
     confusion_matrix = compute_confusion_matrix(labels, res)
     n = len(labels)
@@ -237,10 +237,10 @@ def Entropy(labels, res):
     return sum_E
 
 
-def MI(labels, res):
+def mi(labels, res):
     """Compute mutual information."""
     k = set(labels)
-    l = set(labels)
+    h = set(labels)
     n = len(labels)
     if n != len(res):
         raise ValueError("The two partitions have different size.")
@@ -248,29 +248,29 @@ def MI(labels, res):
     for i in k:
         C_i = set([index for index, value in enumerate(labels) if value == i])
         p_i = len(C_i)/n
-        sum_l = 0
-        for j in l:
+        sum_h = 0
+        for j in h:
             C_j = set([index for index, value in enumerate(res) if value == j])
             p_j = len(C_j)/n
             p_ij = len(C_i.intersection(C_j))/n
             if p_ij != 0:
-                sum_l += p_ij * math.log((p_ij/(p_i*p_j)), 2)
-        sum_k += sum_l
+                sum_h += p_ij * math.log((p_ij/(p_i*p_j)), 2)
+        sum_k += sum_h
     return sum_k
 
 
-def SG_NMI(labels, res):
+def sg_nmi(labels, res):
     """Strehl and Glosh Normalized Mutual Information."""
-    mi = MI(labels, res)
-    return mi / math.sqrt(Cluster_Entropy(labels) * Cluster_Entropy(res))
+    mutualI = mi(labels, res)
+    return mutualI / math.sqrt(cluster_entropy(labels) * cluster_entropy(res))
 
 
-def FJ_NMI(labels, res):
+def fj_nmi(labels, res):
     """Fred and Jain Normalized Mutual Information."""
-    mi = MI(labels, res)
-    return 2 * mi / (Cluster_Entropy(labels) + Cluster_Entropy(res))
+    mutualI = mi(labels, res)
+    return 2 * mutualI / (cluster_entropy(labels) + cluster_entropy(res))
 
 
-def Variation_Information(labels, res):
+def variation_information(labels, res):
     """Meila Variation of Information."""
-    return Cluster_Entropy(labels) + Cluster_Entropy(res) - 2 * MI(labels, res)
+    return cluster_entropy(labels) + cluster_entropy(res) - 2 * mi(labels, res)
