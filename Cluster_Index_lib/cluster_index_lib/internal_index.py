@@ -16,7 +16,8 @@ __all__ = (
     'sd',
     'xie_beni',
     'ray_turi',
-    'gamma'
+    'gamma',
+    'silhouette'
     )
 
 
@@ -161,6 +162,53 @@ def _s_dbw_cluster_pair_density(labels, data, cluster_1, cluster_2):
     midpoint_density = _s_dbw_density(
         labels, data, cluster_1, cluster_2, midpoint)
     return midpoint_density / np.max(cluster_1_density, cluster_2_density)
+
+
+def _silhouette_within_cluster_mean_dist(cluster_points, point):
+    """Compute the within cluster mean distance used in silhouette index."""
+    n_k = len(cluster_points)
+    sum_dist = 0
+    for p in cluster_points:
+        sum_dist += np.linalg.norm(point - p)
+    return 1 / (n_k - 1) * sum_dist
+
+
+def _silhouette_sigma(cluster_points, point):
+    """Compute sigma used in silhouette index."""
+    n_k = len(cluster_points)
+    sum_dist = 0
+    for p in cluster_points:
+        sum_dist += np.linalg.norm(point - p)
+    return 1 / n_k * sum_dist
+
+
+def _silhouette_between_cluster_min_dist(labels, data, cluster, point):
+    """Compute the between cluster min distance used in silhouette index."""
+    clusters = set(labels)
+    min_sigma = np.inf
+    for c in [x for x in clusters if x != cluster]:
+        cluster_points = data[labels == c]
+        sigma = _silhouette_sigma(cluster_points, point)
+        if sigma < min_sigma:
+            min_sigma = sigma
+    return min_sigma
+
+
+def _cluster_silhouette_mean(labels, data, cluster):
+    """Compute cluster silhouette mean, used in silhouette index."""
+    clust_point = data[labels == cluster]
+    sum_point_silhouette = 0
+    for p in clust_point:
+        mean_dist_within = _silhouette_within_cluster_mean_dist(clust_point, p)
+        min_dist_between = _silhouette_between_cluster_min_dist(
+            labels,
+            data,
+            cluster,
+            p)
+        delta = min_dist_between - mean_dist_within
+        point_silhouette = delta / max(min_dist_between, mean_dist_within)
+        sum_point_silhouette += point_silhouette
+    return 1 / len(clust_point) * sum_point_silhouette
 
 
 def between_clusters_density(labels, data):
@@ -310,3 +358,12 @@ def tau(labels, data):
     Nt, Nw, Nb = compute_pairs_count(labels)
     det = np.sqrt(Nb * Nw * (Nt * (Nt - 1) / 2))
     return (s_p - s_m) / det
+
+
+def silhouette(labels, data):
+    """Silhouette index"""
+    clusters = set(labels)
+    sum_silhouette_mean = 0
+    for c in clusters:
+        sum_silhouette_mean += _cluster_silhouette_mean(labels, data, c)
+    return 1 / len(clusters) * sum_silhouette_mean
