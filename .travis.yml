@@ -6,7 +6,14 @@ python:
   - "3.6"
 # command to install dependencies
 install:
-  - pip install scipy numpy sklearn
+  - pip install scipy
+  - pip install numpy
+  - pip install sklearn
+  - pip install python-coveralls
+  - pip install coverage
+
 # command to run tests
 script:
   - cd Cluster_Index_lib/ && python -m unittest discover
+after_success:
+  - coveralls
