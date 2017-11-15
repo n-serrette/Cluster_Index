@@ -1,5 +1,5 @@
 # Cluster_Index
-[![Build Status](https://travis-ci.org/n-serrette/Cluster_Index.svg?branch=master)](https://travis-ci.org/n-serrette/Cluster_Index) [![Coverage Status](https://coveralls.io/repos/github/n-serrette/Cluster_Index/badge.svg?branch=master)](https://coveralls.io/github/n-serrette/Cluster_Index?branch=master)
+[![Build Status](https://travis-ci.org/n-serrette/Cluster_Index.svg?branch=master)](https://travis-ci.org/n-serrette/Cluster_Index) [![Coverage Status](https://coveralls.io/repos/github/n-serrette/Cluster_Index/badge.svg?branch=master)](https://coveralls.io/github/n-serrette/Cluster_Index?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/7d3115e913a02eece33d/maintainability)](https://codeclimate.com/github/n-serrette/Cluster_Index/maintainability)
 
 Several clustering indexes implementation
 
