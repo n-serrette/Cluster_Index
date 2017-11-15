@@ -13,7 +13,7 @@ python:
   - "nightly"
 # command to install dependencies
 install:
-  - pip install -r numpy sklearn
+  - pip install numpy sklearn
 # command to run tests
 script:
   - python -m unittest
