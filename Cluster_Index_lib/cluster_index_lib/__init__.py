@@ -4,5 +4,5 @@
 
 __version__ = "0.0.1"
 
-from external_index import *
-from internal_index import *
+from .external_index import *
+from .internal_index import *
