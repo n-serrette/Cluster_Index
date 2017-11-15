@@ -1,4 +1,5 @@
-# Cluster_Index [![Build Status](https://travis-ci.org/n-serrette/Cluster_Index.svg?branch=master)](https://travis-ci.org/n-serrette/Cluster_Index)
+# Cluster_Index
+[![Build Status](https://travis-ci.org/n-serrette/Cluster_Index.svg?branch=master)](https://travis-ci.org/n-serrette/Cluster_Index) [![Coverage Status](https://coveralls.io/repos/github/n-serrette/Cluster_Index/badge.svg?branch=master)](https://coveralls.io/github/n-serrette/Cluster_Index?branch=master)
 Several clustering indexes implementation
 
 ## External Indices
