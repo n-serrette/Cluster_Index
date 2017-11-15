@@ -16,4 +16,4 @@ install:
   - pip install scipy numpy sklearn
 # command to run tests
 script:
-  - cd cluster_index_lib & python -m unittest
+  - cd cluster_index_lib && python -m unittest
