@@ -17,7 +17,8 @@ __all__ = (
     'xie_beni',
     'ray_turi',
     'gamma',
-    'silhouette'
+    'silhouette',
+    'tau'
     )
 
 

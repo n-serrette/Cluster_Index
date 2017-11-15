@@ -1,6 +1,7 @@
 import unittest
 from cluster_index_lib import external_index as ei
 import numpy as np
+import sklearn.metrics as skmetric
 
 
 # The values used for double checking the results are obtained thanks to the R
@@ -48,6 +49,20 @@ class external_index_test(unittest.TestCase):
             value,
             places=7)
 
+    def test_sokal_sneath(self):
+        value = 0.516118
+        self.assertAlmostEqual(
+            ei.solkal_sneath(self.labels, self.results),
+            value,
+            places=6)
+
+    def test_sokal_sneath_2(self):
+        value = 0.9326138
+        self.assertAlmostEqual(
+            ei.solkal_sneath_2(self.labels, self.results),
+            value,
+            places=7)
+
     def test_ri(self):
         value = 0.873736
         self.assertAlmostEqual(
@@ -89,6 +104,48 @@ class external_index_test(unittest.TestCase):
             ei.phi(self.labels, self.results),
             value,
             places=6)
+
+    def test_mcnemar(self):
+        value = 69.37441
+        self.assertAlmostEqual(
+            ei.mc_nemar(self.labels, self.results),
+            value,
+            places=5)
+
+    def test_fj_nmi(self):
+        value = 0.7352944
+        self.assertAlmostEqual(
+            ei.fj_nmi(self.labels, self.results),
+            value,
+            places=7)
+
+    def test_ari(self):
+        value = 0.7155592
+        self.assertAlmostEqual(
+            ei.ari(self.labels, self.results),
+            value,
+            places=7)
+
+    def test_purity(self):
+        value = 0.8866667
+        self.assertAlmostEqual(
+            ei.purity(self.labels, self.results),
+            value,
+            places=7)
+
+    def test_entropy(self):
+        value = 0.2683396
+        self.assertAlmostEqual(
+            ei.entropy(self.labels, self.results),
+            value,
+            places=7)
+
+    def test_mi(self):
+        value = skmetric.mutual_info_score(self.labels, self.results)
+        self.assertAlmostEqual(
+            ei.mi(self.labels, self.results),
+            value,
+            places=7)
 
 
 if __name__ == '__main__':
