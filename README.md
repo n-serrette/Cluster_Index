@@ -1,4 +1,4 @@
-# Cluster_Index
+# Cluster_Index [![Build Status](https://travis-ci.org/n-serrette/Cluster_Index.svg?branch=master)](https://travis-ci.org/n-serrette/Cluster_Index)
 Several clustering indexes implementation
 
 ## External Indices
