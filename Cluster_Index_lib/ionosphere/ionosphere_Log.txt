@@ -1,0 +1,60 @@
+
+nb constraints: 100
+number of points: 351
+ground truth diameter: 9.74679
+Size GT: 225, 126, 
+number of super-points: 294
+number of super-points: 294
+D: 8.60233
+
+2 clusters of sizes: 180, 171, 
+RI: 0.504144
+Time: 0.0899991, s/f: 4/1094, nodes: 2195, props: 1328
+
+nb constraints: 250
+number of points: 351
+ground truth diameter: 9.74679
+Size GT: 225, 126, 
+number of super-points: 215
+number of super-points: 215
+D: 9.7468
+
+2 clusters of sizes: 112, 239, 
+RI: 0.52661
+Time: 0.0800001, s/f: 1/214, nodes: 429, props: 223
+
+nb constraints: 500
+number of points: 351
+ground truth diameter: 9.74679
+Size GT: 225, 126, 
+number of super-points: 103
+number of super-points: 103
+D: 9.7468
+
+2 clusters of sizes: 93, 258, 
+RI: 0.614815
+Time: 0.0833331, s/f: 1/102, nodes: 205, props: 111
+
+nb constraints: 750
+number of points: 351
+ground truth diameter: 9.74679
+Size GT: 225, 126, 
+number of super-points: 50
+number of super-points: 50
+D: 9.7468
+
+2 clusters of sizes: 101, 250, 
+RI: 0.784388
+Time: 0.0833331, s/f: 1/49, nodes: 99, props: 58
+
+nb constraints: 1000
+number of points: 351
+ground truth diameter: 9.74679
+Size GT: 225, 126, 
+number of super-points: 24
+number of super-points: 24
+D: 9.7468
+
+2 clusters of sizes: 108, 243, 
+RI: 0.882166
+Time: 0.0933331, s/f: 1/23, nodes: 47, props: 32
