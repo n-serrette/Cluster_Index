@@ -11,9 +11,12 @@ install:
   - pip install sklearn
   - pip install python-coveralls
   - pip install coverage
+  - pip install nose
 
 # command to run tests
 script:
-  - cd Cluster_Index_lib/ && python -m unittest discover
+#  - cd Cluster_Index_lib/ && python -m unittest discover
+  - python setup.py install
+  - nosetests --with-coverage
 after_success:
   - coveralls
