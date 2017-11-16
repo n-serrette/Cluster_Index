@@ -15,8 +15,9 @@ install:
 
 # command to run tests
 script:
-#  - cd Cluster_Index_lib/ && python -m unittest discover
+#  - cd Cluster_Index_lib/ &&
   - cd Cluster_Index_lib/ && python setup.py install
-  - nosetests --with-coverage
+#  - nosetests --with-coverage
+  -  python -m unittest discover
 after_success:
   - coveralls
