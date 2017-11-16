@@ -9,18 +9,14 @@ install:
   - pip install scipy
   - pip install numpy
   - pip install sklearn
-  # - pip install python-coveralls
-  # - pip install coverage
-  - pip install pytest
-  - pip install pytest-cov
+  - pip install python-coveralls
+  - pip install coverage
   - pip install coveralls
   - pip install nose
 
 # command to run tests
 script:
-#  - cd Cluster_Index_lib/ &&
   - cd Cluster_Index_lib/ && python setup.py install
-  # - nosetests --with-coverage
-  - py.test --cov-config .coveragerc --cov=flashtext tests/ --doctest-modules -v --cov-report term-missing
+  - nosetests --with-coverage
 after_success:
   - coveralls
