@@ -21,6 +21,6 @@ script:
 #  - cd Cluster_Index_lib/ &&
   - cd Cluster_Index_lib/ && python setup.py install
   # - nosetests --with-coverage
-  - py.test --cov-config .coveragerc --cov=flashtext test/ --doctest-modules -v --cov-report term-missing
+  - py.test --cov-config .coveragerc --cov=flashtext tests/ --doctest-modules -v --cov-report term-missing
 after_success:
   - coveralls
