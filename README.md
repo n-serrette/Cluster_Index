@@ -21,7 +21,7 @@ All this indices are based on counting pair depending on wether they belong to t
 ![ri](images/RI.png)
 #### Adjusted Rand Index
 ![ari](images/ARI.png)
-#### Folkes-Mallows Index [[5]](Fowlkes1983)
+#### Folkes-Mallows Index [[5]](#Fowlkes1983)
 ![folkesMallows](images/FolkesMallows.png)
 #### Jaccard Index
 ![jaccard](images/jaccard.png)
