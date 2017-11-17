@@ -17,11 +17,11 @@ All this indices are based on counting pair depending on wether they belong to t
 ![precision](images/precision.png)
 #### Recall
 ![recall](images/recall.png)
-#### Rand Index [[4]](#Rand1971)
+#### Rand Index [[3]](#Rand1971)
 ![ri](images/RI.png)
 #### Adjusted Rand Index
 ![ari](images/ARI.png)
-#### Folkes-Mallows Index [[5]](#Fowlkes1983)
+#### Folkes-Mallows Index [[4]](#Fowlkes1983)
 ![folkesMallows](images/FolkesMallows.png)
 #### Jaccard Index
 ![jaccard](images/jaccard.png)
