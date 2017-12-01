@@ -5,7 +5,6 @@
 
 
 Several clustering indexes implementation
-
 ## External Indices
 
 This indexes are designed to measure the similarity of two partitions.
@@ -21,11 +20,11 @@ All this indices are based on counting pair depending on wether they belong to t
 ![precision](images/precision.png)
 #### Recall
 ![recall](images/recall.png)
-#### Rand Index [[3]](#references)
+#### Rand Index [[3]](#Rand1971)
 ![ri](images/RI.png)
 #### Adjusted Rand Index
 ![ari](images/ARI.png)
-#### Folkes-Mallows Index [[4]](#references)
+#### Folkes-Mallows Index [[4]](#Fowlkes1983)
 ![folkesMallows](images/FolkesMallows.png)
 #### Jaccard Index
 ![jaccard](images/jaccard.png)
@@ -76,10 +75,10 @@ Also call Czebanowski-Dice index or Ochiai index
 
 ## References
 
-1. Silke Wagner and Dorothea Wagner, Comparing Clustering - An Overview, 2007
-3. Bernard Desgraupes, Clustering Indices, 2016, [https://CRAN.R-project.org/package=clusterCrit]
-4. Rand, William M.: Objective Criteria for the Evaluation of Clustering Methods. Journal of the American Statistical Association, 66(336):846-850, 1971.
-5. Fowlkes, E. B., Mallows, C. L.: A Method for Comparing Two Hierarchical Clusterings. Journal of the American Statistical Association, 78(383):553–569, 1983.
+1. <a name="Wagner2007"></a>Silke Wagner and Dorothea Wagner, Comparing Clustering - An Overview, 2007
+3. <a name="Desgraupes2016"></a>Bernard Desgraupes, Clustering Indices, 2016, [https://CRAN.R-project.org/package=clusterCrit]
+4. <a name="Rand1971"></a>Rand, William M.: Objective Criteria for the Evaluation of Clustering Methods. Journal of the American Statistical Association, 66(336):846-850, 1971.
+5. <a name="Fowlkes1983"></a>Fowlkes, E. B., Mallows, C. L.: A Method for Comparing Two Hierarchical Clusterings. Journal of the American Statistical Association, 78(383):553–569, 1983.
 
 
 ## TODO
