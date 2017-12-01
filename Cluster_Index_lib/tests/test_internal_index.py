@@ -27,12 +27,12 @@ class internal_index_test(unittest.TestCase):
             value,
             places=6)
 
-    # def test_tau(self):
-    #     value = 0.5842415
-    #     self.assertAlmostEqual(
-    #         ii.tau(self.labels, self.data),
-    #         value,
-    #         places=6)
+    def test_tau(self):
+        value = 0.5842415
+        self.assertAlmostEqual(
+            ii.tau(self.labels, self.data),
+            value,
+            places=6)
 
     def test_xie_beni(self):
         value = 11.91824
@@ -41,12 +41,12 @@ class internal_index_test(unittest.TestCase):
             value,
             places=4)
 
-    # def test_gamma(self):
-    #     value = 0.8792793
-    #     self.assertAlmostEqual(
-    #         ii.gamma(self.labels, self.data),
-    #         value,
-    #         places=6)
+    def test_gamma(self):
+        value = 0.8792793
+        self.assertAlmostEqual(
+            ii.gamma(self.labels, self.data),
+            value,
+            places=6)
 
     def test_ball_hall(self):
         value = 0.595912
@@ -69,12 +69,12 @@ class internal_index_test(unittest.TestCase):
             value,
             places=5)
 
-    # def test_c_index(self):
-    #     value = 0.04680377
-    #     self.assertAlmostEqual(
-    #         ii.c_index(self.labels, self.data),
-    #         value,
-    #         places=7)
+    def test_c_index(self):
+        value = 0.04680377
+        self.assertAlmostEqual(
+            ii.c_index(self.labels, self.data),
+            value,
+            places=7)
 
 
 if __name__ == '__main__':
